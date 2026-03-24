@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import React, { useState } from 'react';
 import { QuizState, Step } from './types';
 import { QUIZ_STEPS } from './constants';
 import { 
@@ -8,15 +7,18 @@ import {
   QuestionImageGrid, 
   InputText, 
   LoadingAnimated,
+  LoadingProtocol,
   QuestionBodyInteractive,
   InterstitialSocialProof,
   QuestionGridMultiple,
+  QuestionListMultiple,
   InterstitialStats,
   InterstitialMethod,
   InputNumberStepper,
   InterstitialGoalConfirm,
   ResultPage,
   InterstitialHowToUse,
+  InterstitialSimple,
   VSLStep,
   InterstitialPresell,
   InterstitialTestimonials,
@@ -37,14 +39,14 @@ const INITIAL_STATE: QuizState = {
   altura: 165,
   peso_desejado: 65,
   gestacoes: '',
-  rotina_diaria: '',
+  rotina_diaria: [],
   horas_sono: '',
   consumo_agua: '',
   corpo_sonho: '',
   compromisso: ''
 };
 
-const FLOW = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32];
+const FLOW = [1, 100, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32];
 
 export default function App() {
   const [currentFlowIdx, setCurrentFlowIdx] = useState(0);
@@ -75,6 +77,26 @@ export default function App() {
   const currentStep = getActiveStep();
 
   const handleNext = (data?: Partial<QuizState>) => {
+    // Eventos de rastreamento Clarity
+    const eventMap: Record<number | string, string> = {
+      1:  'quiz_iniciado',
+      6:  'nome_capturado',
+      7:  'dor_selecionada',
+      15: 'peso_definido',
+      22: 'resultado_visto',
+      25: 'loading_completo',
+      26: 'vsl1_iniciada',
+      29: 'depoimentos_vistos',
+      30: 'vsl2_iniciada',
+      31: 'vsl2_concluida',
+      32: 'checkout_visto',
+    };
+
+    const currentId = FLOW[currentFlowIdx];
+    if (eventMap[currentId] && (window as any).clarity) {
+      (window as any).clarity("event", eventMap[currentId]);
+    }
+
     if (data) {
       setState(prev => ({ ...prev, ...data }));
     }
@@ -101,13 +123,16 @@ export default function App() {
       case 'interstitial_social_proof': return <InterstitialSocialProof {...props} />;
       case 'input_text': return <InputText {...props} />;
       case 'question_grid_multiple': return <QuestionGridMultiple {...props} />;
+      case 'question_list_multiple': return <QuestionListMultiple {...props} />;
       case 'interstitial_stats': return <InterstitialStats {...props} />;
       case 'interstitial_method': return <InterstitialMethod {...props} />;
       case 'input_number_stepper': return <InputNumberStepper {...props} />;
       case 'interstitial_goal_confirm': return <InterstitialGoalConfirm {...props} />;
       case 'result_page': return <ResultPage {...props} />;
       case 'interstitial_how_to_use': return <InterstitialHowToUse {...props} />;
+      case 'interstitial_simple': return <InterstitialSimple {...props} />;
       case 'loading_animated': return <LoadingAnimated {...props} />;
+      case 'loading_protocol': return <LoadingProtocol {...props} />;
       case 'vsl_1': 
       case 'vsl_2': return <VSLStep {...props} />;
       case 'interstitial_presell': return <InterstitialPresell {...props} />;
@@ -128,7 +153,7 @@ export default function App() {
       <div className="w-full max-w-[480px] bg-white min-h-screen shadow-xl flex flex-col relative overflow-hidden">
         
         {/* Header */}
-        <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-md px-4 py-3 flex items-center justify-between border-b border-gray-100">
+        <div className="sticky top-0 z-50 bg-white px-4 py-3 flex items-center justify-between border-b border-gray-100">
           {currentStep.show_back_button && (
             <button onClick={handleBack} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
               <ChevronLeft className="w-6 h-6 text-gray-600" />
@@ -136,11 +161,9 @@ export default function App() {
           )}
           <div className="flex-1 flex justify-center">
              <div className="h-2 w-full max-w-[200px] bg-gray-100 rounded-full overflow-hidden">
-                <motion.div 
-                  initial={{ width: 0 }}
-                  animate={{ width: `${currentStep.progress_percent || 0}%` }}
-                  className="h-full"
-                  style={{ background: currentStep.progress_color || '#E53935' }}
+                <div
+                  className="h-full transition-[width] duration-300 ease-out"
+                  style={{ width: `${currentStep.progress_percent || 0}%`, background: currentStep.progress_color || '#E53935' }}
                 />
              </div>
           </div>
@@ -149,17 +172,9 @@ export default function App() {
 
         {/* Content */}
         <main className="flex-1 p-6 overflow-y-auto">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentStep.id}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              {renderStep()}
-            </motion.div>
-          </AnimatePresence>
+          <div key={currentStep.id}>
+            {renderStep()}
+          </div>
         </main>
 
         {/* Footer info */}

@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #E53935;
+  --color-muted: #6B7280;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
 .marcador {
   position: absolute;
   width: 22px;
@@ -8,10 +17,15 @@
   border: 2.5px solid #ffffff;
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  animation: pulsar 1.2s ease-in-out infinite;
   pointer-events: none;
   z-index: 10;
   transition: opacity .2s ease;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .marcador {
+    animation: pulsar 1.2s ease-in-out infinite;
+  }
 }
 
 @keyframes pulsar {
@@ -44,4 +58,13 @@
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(12px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
 }

@@ -1,5 +1,3 @@
-import React from 'react';
-
 export type StepType = 
   | 'intro' 
   | 'question_single' 
@@ -8,13 +6,16 @@ export type StepType =
   | 'interstitial_social_proof' 
   | 'input_text' 
   | 'question_grid_multiple'
+  | 'question_list_multiple'
   | 'interstitial_stats' 
   | 'interstitial_method' 
   | 'input_number_stepper' 
   | 'interstitial_goal_confirm' 
   | 'result_page' 
   | 'interstitial_how_to_use' 
+  | 'interstitial_simple'
   | 'loading_animated' 
+  | 'loading_protocol'
   | 'vsl_1' 
   | 'vsl_2' 
   | 'interstitial_presell' 
@@ -34,7 +35,7 @@ export interface QuizState {
   altura: number;
   peso_desejado: number;
   gestacoes: string;
-  rotina_diaria: string;
+  rotina_diaria: string[];
   horas_sono: string;
   consumo_agua: string;
   corpo_sonho: string;

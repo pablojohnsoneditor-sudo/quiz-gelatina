@@ -10,8 +10,20 @@ export const QUIZ_STEPS: Step[] = [
     progress_color: '#E53935',
     show_back_button: false,
     headline: "O Ritual da Gelatina Mounjaro: ingrediente de centavos esta fazendo mulheres não sentirem fome",
-    subtext: "Responda essas perguntas rápidas para liberar o seu ritual da Gelatina Mounjaro e ver quantos quilos você pode perder nos primeiros 7 dias.",
-    cta_text: "Começar Minha Análise Gratuita"
+    subtext: "Descubra como ativar seu metabolismo e perder até 12kg em 30 dias com a Gelatina Mounjaro!",
+    cta_text: "Quero saber se funciona para mim!"
+  },
+  {
+    id: 100,
+    type: 'interstitial_simple',
+    label: 'Início da Jornada',
+    phase: 1,
+    progress_percent: 2,
+    progress_color: '#E53935',
+    show_back_button: true,
+    headline: "Vamos começar sua jornada! 🚀",
+    subtext: "Responda algumas perguntas rápidas para personalizar seu plano.",
+    cta_text: "Vamos lá! 💪"
   },
   {
     id: 2,
@@ -21,13 +33,13 @@ export const QUIZ_STEPS: Step[] = [
     progress_percent: 5,
     progress_color: '#E53935',
     show_back_button: true,
-    question: "Qual a sua faixa etaria?",
-    subtext: "Vamos personalizar seu protocolo",
+    question: "Qual a sua idade?",
+    subtext: "Selecione sua faixa etária.",
     options: [
-      { emoji: "🌹", label: "18 - 29 anos", sublabel: "Aceleração Metabólica Máxima", value: "18-29" },
-      { emoji: "🌷", label: "30 - 39 anos", sublabel: "Destravar Hormônios de Queima", value: "30-39" },
-      { emoji: "🌻", label: "40 - 49 anos", sublabel: "Reprogramação de Queima Natural", value: "40-49" },
-      { emoji: "🌻", label: "50+ anos", sublabel: "Fim do Bloqueio Metabólico", value: "50+" }
+      { emoji: "🌹", label: "18 - 29 anos", value: "18-29" },
+      { emoji: "🌷", label: "30 - 39 anos", value: "30-39" },
+      { emoji: "🌻", label: "40 - 49 anos", value: "40-49" },
+      { emoji: "🌻", label: "50+ anos", value: "50+" }
     ],
     saves_to: "faixa_etaria"
   },
@@ -39,13 +51,13 @@ export const QUIZ_STEPS: Step[] = [
     progress_percent: 10,
     progress_color: '#E53935',
     show_back_button: true,
-    question: "Como voce classifica o seu corpo hoje?",
-    subtext: "Isso nos ajuda a personalizar seu protocolo",
+    question: "Como você classifica seu corpo?",
+    subtext: "Escolha opção que melhor te descreve",
     options: [
-      { image: "https://xsomezyqnzetfxulmvlp.supabase.co/storage/v1/object/public/Fotos%20GM/Medio.png", label: "Médio", value: "medio", img_id: "corpo_medio" },
-      { image: "https://xsomezyqnzetfxulmvlp.supabase.co/storage/v1/object/public/Fotos%20GM/Plus.png", label: "Plus Size", value: "plus_size", img_id: "corpo_plus_size" },
-      { image: "https://xsomezyqnzetfxulmvlp.supabase.co/storage/v1/object/public/Fotos%20GM/Acima.png", label: "Acima do peso", value: "acima_peso", img_id: "corpo_acima_peso" },
-      { image: "https://xsomezyqnzetfxulmvlp.supabase.co/storage/v1/object/public/Fotos%20GM/Sobrepeso.png", label: "Sobrepeso", value: "sobrepeso", img_id: "corpo_sobrepeso" }
+      { image: "https://gkaoozgpeeeympskbcxq.supabase.co/storage/v1/object/public/IMGs/Medio.webp", label: "Médio", value: "medio", img_id: "corpo_medio" },
+      { image: "https://gkaoozgpeeeympskbcxq.supabase.co/storage/v1/object/public/IMGs/Plus.webp", label: "Plus Size", value: "plus_size", img_id: "corpo_plus_size" },
+      { image: "https://gkaoozgpeeeympskbcxq.supabase.co/storage/v1/object/public/IMGs/Acima.webp", label: "Acima do peso", value: "acima_peso", img_id: "corpo_acima_peso" },
+      { image: "https://gkaoozgpeeeympskbcxq.supabase.co/storage/v1/object/public/IMGs/Sobrepeso.webp", label: "Sobrepeso", value: "sobrepeso", img_id: "corpo_sobrepeso" }
     ],
     saves_to: "tipo_corpo"
   },
@@ -79,12 +91,12 @@ export const QUIZ_STEPS: Step[] = [
     progress_percent: 20,
     progress_color: '#E53935',
     show_back_button: true,
-    headline: "Voce sabia disso?",
-    subtext: "Olha o que saiu na mídia sobre esse método...",
+    headline: "Sim, até as famosas já usaram!⭐",
+    subtext: "A Gelatina Mounjaro é tendência entre celebridades e influenciadoras.",
     article: {
       title: "A GELEIA REDUTORA!",
       body: "Após eliminar 60kg em apenas 16 semanas, Jojo Todynho rompe o silêncio sobre o famoso ritual da geleia do tiktok que \"desliga\" a fome e está substituindo injeções caríssimas.",
-      image: "https://xsomezyqnzetfxulmvlp.supabase.co/storage/v1/object/public/Fotos%20GM/NOT%20(1).png",
+      image: "https://gkaoozgpeeeympskbcxq.supabase.co/storage/v1/object/public/IMGs/NOT.webp",
       img_id: "midia_g1"
     }
   },
@@ -109,7 +121,7 @@ export const QUIZ_STEPS: Step[] = [
     progress_percent: 30,
     progress_color: '#E53935',
     show_back_button: true,
-    question: "{nome}, qual dessas situações é a que mais te dói hoje?",
+    question: "**{nome}**, o que mais te incomoda no seu corpo hoje?",
     options: [
       { emoji: "🩷", label: "Vergonha de se olhar", sublabel: "Evita o espelho e não tira mais fotos", value: "vergonha" },
       { emoji: "😔", label: "Afeta minha saúde", sublabel: "Sinto dores e cansaço por qualquer esforço bobo", value: "saude" },
@@ -174,22 +186,6 @@ export const QUIZ_STEPS: Step[] = [
       { emoji: "👗", label: "Entrar naquela calça 38/40", value: "calca" }
     ],
     saves_to: "vitorias_urgentes"
-  },
-  {
-    id: 11,
-    type: 'interstitial_stats',
-    label: 'Validação Social - Estatísticas',
-    phase: 1,
-    progress_percent: 50,
-    progress_color: '#E53935',
-    show_back_button: true,
-    headline: "Você não está sozinha!",
-    subtext: "94,7% das nossas clientes tinham exatamente os mesmos bloqueios que você e hoje vivem uma nova realidade com a Gelatina Mounjaro.",
-    stats: [
-      { value: 94, label: "Relataram o fim da compulsão por doces e massas", color: "#E53935" },
-      { value: 98, label: "Voltaram a usar roupas guardadas há anos com prazer", color: "#22C55E" },
-      { value: 75, label: "Perceberam que isso era o problema", color: "#F97316" }
-    ]
   },
   {
     id: 12,
@@ -291,13 +287,14 @@ export const QUIZ_STEPS: Step[] = [
   },
   {
     id: 19,
-    type: 'question_single',
+    type: 'question_list_multiple',
     label: 'Rotina Diária',
     phase: 1,
     progress_percent: 82,
     progress_color: '#E53935',
     show_back_button: true,
-    question: "Como e sua rotina diaria?",
+    question: "Como é a sua **rotina** no dia a dia?",
+    subtext: "Selecione todas as opções que fazem parte da sua rotina.",
     options: [
       { emoji: "🏢", label: "Trabalho fora de casa", value: "fora_casa" },
       { emoji: "🏠", label: "Trabalho em home office", value: "home_office" },
@@ -314,7 +311,8 @@ export const QUIZ_STEPS: Step[] = [
     progress_percent: 84,
     progress_color: '#E53935',
     show_back_button: true,
-    question: "Quantas horas voce dorme por noite?",
+    question: "Quantas horas você **dorme** por noite?",
+    subtext: "O sono é essencial para o emagrecimento.",
     options: [
       { emoji: "🥴", label: "Menos de 5 horas", value: "<5" },
       { emoji: "🛏️", label: "5 a 7 horas", value: "5-7" },
@@ -331,7 +329,8 @@ export const QUIZ_STEPS: Step[] = [
     progress_percent: 86,
     progress_color: '#E53935',
     show_back_button: true,
-    question: "Quanta agua voce bebe por dia?",
+    question: "Quanta **água** você bebe por dia?",
+    subtext: "A hidratação acelera resultados.",
     options: [
       { emoji: "🧃", label: "Quase nada", value: "quase_nada" },
       { emoji: "💧", label: "Menos de 1 litro", value: "<1L" },
@@ -420,8 +419,8 @@ export const QUIZ_STEPS: Step[] = [
     show_back_button: true,
     question: "Qual o corpo dos seus sonhos?",
     options: [
-      { image: "https://xsomezyqnzetfxulmvlp.supabase.co/storage/v1/object/public/Fotos%20GM/Definida.png", label: "Em forma e definida", value: "definida", img_id: "corpo_definido" },
-      { image: "https://xsomezyqnzetfxulmvlp.supabase.co/storage/v1/object/public/Fotos%20GM/Natural.png", label: "Natural e saudavel", value: "natural", img_id: "corpo_natural" }
+      { image: "https://gkaoozgpeeeympskbcxq.supabase.co/storage/v1/object/public/IMGs/Definida.webp", label: "Em forma e definida", value: "definida", img_id: "corpo_definido" },
+      { image: "https://gkaoozgpeeeympskbcxq.supabase.co/storage/v1/object/public/IMGs/Natural.webp", label: "Natural e saudavel", value: "natural", img_id: "corpo_natural" }
     ],
     saves_to: "corpo_sonho"
   },
@@ -462,7 +461,7 @@ export const QUIZ_STEPS: Step[] = [
   },
   {
     id: 31,
-    type: 'loading_animated',
+    type: 'loading_protocol',
     label: 'Carregamento Final - Pre-Oferta',
     phase: 1,
     headline: "Seu protocolo da Gelatina Mounjaro de 30 dias esta pronto!",
@@ -482,7 +481,7 @@ export const QUIZ_STEPS: Step[] = [
     phase: 1,
     headline: "{nome}, seu Plano da Gelatina de 30 dias foi Gerado com Sucesso!",
     price: "R$ 27",
-    original_price: "R$ 149,00"
+    original_price: "R$ 97,00"
   },
 
   // ETAPAS CONDICIONAIS 8A-D (Baseadas em situacao_emocional)
