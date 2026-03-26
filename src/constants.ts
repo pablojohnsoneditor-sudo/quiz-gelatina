@@ -188,6 +188,20 @@ export const QUIZ_STEPS: Step[] = [
     saves_to: "vitorias_urgentes"
   },
   {
+    id: 11,
+    type: 'input_number_stepper',
+    label: 'Quantos Kg Quer Perder',
+    phase: 1,
+    progress_percent: 8,
+    progress_color: '#E53935',
+    show_back_button: true,
+    question: "Quantos **kg** quer perder?",
+    subtext: "Seja honesta — vamos criar seu plano personalizado",
+    default_value: 10,
+    unit: 'kg',
+    saves_to: 'kg_perder'
+  },
+  {
     id: 12,
     type: 'interstitial_method',
     label: 'Como o Método Funciona',
