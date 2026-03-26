@@ -40,6 +40,7 @@ export interface QuizState {
   consumo_agua: string;
   corpo_sonho: string;
   compromisso: string;
+  kg_perder?: number;
   meta_perda?: number;
 }
 
