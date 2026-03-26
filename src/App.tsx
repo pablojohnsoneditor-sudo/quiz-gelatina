@@ -43,10 +43,11 @@ const INITIAL_STATE: QuizState = {
   horas_sono: '',
   consumo_agua: '',
   corpo_sonho: '',
-  compromisso: ''
+  compromisso: '',
+  kg_perder: 10
 };
 
-const FLOW = [1, 100, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32];
+const FLOW = [2, 11, 3, 4, 6, 7, 8, 9, 5, 10, 29, 13, 14, 15, 19, 20, 21, 25, 22, 27, 32];
 
 export default function App() {
   const [currentFlowIdx, setCurrentFlowIdx] = useState(0);
@@ -79,17 +80,13 @@ export default function App() {
   const handleNext = (data?: Partial<QuizState>) => {
     // Eventos de rastreamento Clarity
     const eventMap: Record<number | string, string> = {
-      1:  'quiz_iniciado',
       6:  'nome_capturado',
       7:  'dor_selecionada',
-      15: 'peso_definido',
-      22: 'resultado_visto',
+      13: 'peso_definido',
       25: 'loading_completo',
-      26: 'vsl1_iniciada',
-      29: 'depoimentos_vistos',
-      30: 'vsl2_iniciada',
-      31: 'vsl2_concluida',
-      32: 'checkout_visto',
+      22: 'resultado_visto',
+      27: 'corpo_sonho_selecionado',
+      32: 'pagina_vendas_vista',
     };
 
     const currentId = FLOW[currentFlowIdx];
